@@ -1,5 +1,60 @@
-# Vue 3 + Vite
+# Wine Vue App
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A simple app to store and manage details about wines, such as name, country, vintage, variety, and winery.  
+This application allows users to add, edit, and filter wines by different attributes.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+- Add and edit wine entries.  
+- Filter wines by name, country, and variety.  
+- View a list of wines with basic information.  
+- Shared form for creating and editing.  
+- Filters panel toggle.  
+
+## Project Structure
+
+```
+wine-vue-app/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   └── WineForm.vue
+│   ├── views/
+│   │   ├── WineFormView.vue
+│   │   └── WineListView.vue
+│   ├── stores/
+│   │   └── wines.js
+│   ├── App.vue
+│   ├── main.js
+│   └── router.js
+├── index.html
+├── package.json
+└── vite.config.js
+```
+
+## Technologies Used
+
+- **Vue 3** — Composition API  
+- **Vite** — Frontend build tool for fast development  
+- **Pinia** — State management for Vue  
+- **Vue Router** — Client-side routing  
+
+## How to Run
+
+1. Clone the repository:  
+   ```bash
+   git clone git@github.com:guduchango/wine-vue-app.git
+   cd wine-vue-app
+   ```
+
+2. Install dependencies:  
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:  
+   ```bash
+   npm run dev
+   ```
