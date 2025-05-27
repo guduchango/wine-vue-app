@@ -26,8 +26,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const auth = useAuthStore()
-  console.log('auth', auth)
-
   const isProtected = ['/wine_list', '/wine_form']
 
   if (isProtected.includes(to.path) && !auth.token) {
