@@ -1,7 +1,11 @@
-import { defineStore } from 'pinia'
+import {
+  defineStore
+} from 'pinia'
 import api from '../services/api'
 import axios from 'axios'
-import { useRouter } from 'vue-router'
+import {
+  useRouter
+} from 'vue-router'
 const router = useRouter()
 
 
@@ -19,7 +23,9 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
     async login(credentials) {
-      const { data } = await api.post('/login', credentials)
+      const {
+        data
+      } = await api.post('/login', credentials)
       this.token = data.token
       localStorage.setItem('token', data.token)
       await this.getUser()
@@ -28,7 +34,9 @@ export const useAuthStore = defineStore('auth', {
     async register(form) {
       console.log('form', form)
       try {
-        const { data } = await public_api.post('/register', form)
+        const {
+          data
+        } = await public_api.post('/register', form)
         const token = data.token
         localStorage.setItem('token', token)
         this.token = token
@@ -38,11 +46,38 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
+    async reset(token, form) {
+
+      console.log('form', form)
+
+      const info = {
+        token: token,
+        password: form.password,
+        password_confirmation: form.confirmPassword,
+        email: form.email
+      }
+
+      console.log('info', info)
+
+
+      try {
+        const {
+          data
+        } = await public_api.post('/reset-password', info)
+        console.log('Success:', data)
+        return data
+      } catch (error) {
+        throw error
+      }
+    },
+
     async getUser() {
       if (!this.token) {
         throw new Error('No token found')
       }
-      const { data } = await api.get('/user')
+      const {
+        data
+      } = await api.get('/user')
       this.user = data
     },
 
