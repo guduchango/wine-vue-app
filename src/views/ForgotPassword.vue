@@ -39,9 +39,10 @@
   async function handleSubmit() {
     message.value = ''
     error.value = ''
+    const url = import.meta.env.VITE_API_URL+'/forgot-password'
   
     try {
-      const response = await fetch('http://localhost:8000/api/forgot-password', {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

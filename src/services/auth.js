@@ -2,7 +2,7 @@
 import axios from 'axios'
 import api from './api';
 
-const API_URL = 'http://localhost:8000/api' // Asegurate que coincida con tu backend
+const API_URL = import.meta.env.VITE_API_URL// Asegurate que coincida con tu backend
 
 axios.defaults.withCredentials = true // Necesario si usás Sanctum
 axios.defaults.withXSRFToken = true;
