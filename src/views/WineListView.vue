@@ -3,7 +3,7 @@
     <!-- Header -->
    <header class="flex items-center justify-between p-4 border-b">
       <h1 class="text-lg font-semibold">Wines</h1>
-      <div class="flex gap-2 ">
+      <div class="flex gap-2">
         <button class="px-3 py-2 text-sm bg-blue-500 text-white rounded" @click="createWine()">
           <!-- plus icon -->
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -30,7 +30,7 @@
     </header>
 
     <!-- Filtros -->
-    <div class="grid grid-cols-1 gap-4 pt-2">
+    <div class="grid grid-cols-1 gap-4 pt-2 mx-2">
       <div v-if="showFilters" class="space-y-2 mb-4">
         <input v-model="searchQuery" type="text" placeholder="Search by name..." class="w-full p-2 border rounded" />
         <select v-model="selectedScore" class="w-full p-2 border rounded">
@@ -48,12 +48,14 @@
     <main class="flex-1 overflow-y-auto pb-24">
       <div v-if="loading" class="text-center mt-8 text-gray-500">Loading wines...</div>
       <div v-else-if="filteredWines.length === 0" class="text-center mt-8 text-gray-500">No wines found</div>
-      <div v-else v-for="wine in filteredWines" :key="wine.id" @click="editWine(wine)"
-        class="border p-3 m-2 rounded shadow cursor-pointer hover:bg-gray-100">
-        <h2 class="font-semibold">{{ wine.name }} | {{ wine.variety }} ({{ wine.vintage }})</h2>
-        <p><span class="font-semibold">score:</span> {{ wine.score }} </p>
-    
-      
+      <div class="space-y-3 px-4 py-2">
+        <WineCard
+          v-for="wine in filteredWines"
+          :key="wine.id"
+          :wine="wine"
+          @click="editWine(wine)"
+          @edit="editWine"
+        />
       </div>
     </main>
 
@@ -67,6 +69,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useWineStore } from '../stores/wines'
 import { useRouter } from 'vue-router'
 import Menu from '../components/Menu.vue'
+import WineCard from '../components/WineCard.vue'
 
 const searchQuery = ref('')
 const selectedScore = ref('')
@@ -104,7 +107,7 @@ const uniqueVarieties = computed(() => [...new Set(wines.value.map(w => w.variet
 
 function editWine(wine) {
   wineStore.selectWine(wine)
-  router.push({ path: '/wine_form', query: { id: wine.id } })
+  router.push({ path: '/wine_detail', query: { id: wine.id } })
 }
 
 function createWine() {

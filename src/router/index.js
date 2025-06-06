@@ -7,10 +7,7 @@ import TestView from '../views/TestView.vue'
 import ResetPassword from '../views/ResetPassword.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
 import { useAuthStore } from '../stores/auth'
-
-
-
-
+import WineDetailView from '../views/WineDetailView.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -18,6 +15,7 @@ const routes = [
   { path: '/register', name: 'Register', component: RegisterView },
   { path: '/wine_list', name: 'WineList', component: WineListView },
   { path: '/wine_form', name: 'WineForm', component: WineFormView },
+  { path: '/wine_detail', name: 'WineDetail', component: WineDetailView },
   { path: '/test', name: 'Test', component: TestView },
   { path: '/forgot-password', name: 'ForgotPassword', component: ForgotPassword },
   { path: '/reset-password/:token', name: 'ResetPassword', component: ResetPassword },

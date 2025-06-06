@@ -168,8 +168,6 @@ import Menu from '../components/Menu.vue'
 import api from '../services/api'
 import TooltipInfo from '../components/TooltipInfo.vue'
 
-
-
 // Router
 const route = useRoute()
 const router = useRouter()
