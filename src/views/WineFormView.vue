@@ -19,136 +19,29 @@
       <div class="p-4 mb-4 rounded">
         <form @submit.prevent="handleSubmit">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div class="space-y-2">
-              <label class="block text-sm font-medium">Name</label>
-              <input v-model="wine.name" type="text" class="w-full p-2 border rounded" />
-            </div>
-            <div class="space-y-2">
-              <label class="block text-sm font-medium">Variety</label>
-              <input v-model="wine.variety" type="text" class="w-full p-2 border rounded" />
-            </div>
-            <div class="space-y-2">
-              <label class="block text-sm font-medium">Vintage</label>
-              <input v-model="wine.vintage" type="number" class="w-full p-2 border rounded" />
-            </div>
-            <div class="space-y-2">
-              <label class="block text-sm font-medium">Alcohol</label>
-              <input v-model="wine.alcohol" type="number" step="0.1" class="w-full p-2 border rounded" />
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-medium">Price</label>
-              <input v-model="wine.price" type="number" class="w-full p-2 border rounded" />
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-medium">Color</label>
-              <select v-model="wine.color" class="w-full p-2 border rounded">
-                <option value="">Select</option>
-                <option value="translucent">Translucent</option>
-                <option value="medium">Medium</option>
-                <option value="deep">Deep</option>
-              </select>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-medium">Aroma</label>
-              <select v-model="wine.aroma" class="w-full p-2 border rounded">
-                <option value="">Select</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="intense">Intense</option>
-              </select>
-            </div>
-
-            <div class="space-y-2 relative">
-              <label class="block text-sm font-medium flex items-center gap-2">
-                Sweetness
-                <TooltipInfo text="Sweetness is how much sugar you taste in the wine.
-                                  A dry wine has almost no sugar and feels more serious or crisp.
-                                  A sweet wine has natural sugar and feels smooth and dessert-like.
-                                  There are also in-between levels, like semi-sweet." />
-              </label>
-              <select v-model="wine.sweetness" class="w-full p-2 border rounded">
-                <option value="">Select</option>
-                <option value="dry">Dry</option>
-                <option value="semi-dry">Semi-dry</option>
-                <option value="sweet">Sweet</option>
-              </select>
-            </div>
-
-            <div class="space-y-2 relative">
-              <label class="block text-sm font-medium flex items-center gap-2">
-                Acidity
-                <TooltipInfo text="Acidity is what makes the wine feel fresh, lively, or zesty.
-                                  It’s like the feeling you get from a lemon or a green apple.
-                                  A wine with more acidity is more refreshing.
-                                  A wine with less acidity is more smooth or flat." />
-              </label>
-              <select v-model="wine.acidity" class="w-full p-2 border rounded">
-                <option value="">Select</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
-            </div>
-
-           <div class="space-y-2">
-              <label class="block text-sm font-medium flex items-center gap-2">
-                Tannin
-                <TooltipInfo text="Tannins are what make the wine feel dry or rough in your mouth.
-                                  They come from the grape skin, seeds, and sometimes the barrels.
-                                  It’s like drinking strong black tea or eating a green banana — it dries your mouth." />
-              </label>
-               <select v-model="wine.tannin" class="w-full p-2 border rounded">
-                <option value="">Select</option>
-                <option value="mild">Mild</option>
-                <option value="medium">Medium</option>
-                <option value="antringent">Antringent</option>
-              </select>
-            </div>
-
-            <div class="space-y-2 relative">
-              <label class="block text-sm font-medium flex items-center gap-2">
-                Body
-                <TooltipInfo text="The body of the wine is how it feels in your mouth.
-                                   It can be light like water, medium like milk, or heavy like cream.
-                                   It depends on the alcohol, sugars, and other elements in the wine." />
-              </label>
-              <select v-model="wine.body" class="w-full p-2 border rounded">
-                <option value="">Select</option>
-                <option value="light">Light</option>
-                <option value="medium">Medium</option>
-                <option value="robust">Robust</option>
-              </select>
-            </div>
-
-            <div class="space-y-2 relative">
-               <label class="block text-sm font-medium flex items-center gap-2">
-                Persistence
-                <TooltipInfo text="Persistence is how long the flavor of the wine stays in your mouth after you swallow.
-                                  If the taste disappears quickly, it has short persistence.
-                                  If the flavor stays for several seconds, it has good persistence." />
-              </label>
-              <select v-model="wine.persistence" class="w-full p-2 border rounded">
-                <option value="">Select</option>
-                <option value="short">Short</option>
-                <option value="medium">Medium</option>
-                <option value="long">Long</option>
-              </select>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-medium">Score</label>
-              <select v-model="wine.score" class="w-full p-2 border rounded">
-                <option value="">Select</option>
-                <option value="special gathering">Special gathering</option>
-                <option value="get-together with close friends">Get-together with close friends</option>
-                <option value="hangout with friends">Hangout with friends</option>
-                <option value="it's tasty, but expensive">It's tasty, but expensive</option>
-                <option value="I wouldn't buy it">I wouldn't buy it</option>
-              </select>
-            </div>
+            <FormInput v-model="wine.name" label="Name" />
+            <FormInput v-model="wine.variety" label="Variety" />
+            <FormInput v-model="wine.vintage" label="Vintage" type="number" />
+            <FormInput v-model="wine.alcohol" label="Alcohol" type="number" step="0.1" />
+            <FormInput v-model="wine.price" label="Price" type="number" /> 
+            <FormSelect v-model="wine.color" label="Color" :options="['translucent', 'medium', 'deep']" />
+            <FormSelect v-model="wine.aroma" label="Aroma" :options="['low', 'medium', 'intense']" />
+            <FormSelect v-model="wine.sweetness" label="Sweetness" :options="['dry', 'semi-dry', 'sweet']" tooltip="sweetness" />
+            <FormSelect v-model="wine.acidity" label="Acidity" :options="['low', 'medium', 'high']" tooltip="Acidity is what makes the wine feel fresh, lively, or zesty." />
+            <FormSelect v-model="wine.tannin" label="Tannin" :options="['mild', 'medium', 'antringent']" tooltip="Tannins make the wine feel dry or rough in your mouth." />
+            <FormSelect v-model="wine.body" label="Body" :options="['light', 'medium', 'robust']" tooltip="The body of the wine is how it feels in your mouth." />
+            <FormSelect v-model="wine.persistence" label="Persistence" :options="['short', 'medium', 'long']" tooltip="Persistence is how long the flavor of the wine stays in your mouth after you swallow." />
+             <FormSelect
+              v-model="wine.score"
+              label="Score"
+              :options="[
+                'special gathering',
+                'get-together with close friends',
+                'hangout with friends',
+                'its tasty, but expensive',
+                'I wouldnt buy it'
+                ]"
+              />
           </div>
           <div class="flex justify-end pt-4">
             <button type="submit" class="px-4 py-2 roundesd bg-blue-600 text-white">Save</button>
@@ -156,7 +49,6 @@
         </form>
       </div>
     </main>
-
     <Menu />
   </div>
 </template>
@@ -164,17 +56,20 @@
 <script setup>
 import { reactive, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useWineStore } from '../stores/wines'
 import Menu from '../components/Menu.vue'
 import api from '../services/api'
-import TooltipInfo from '../components/TooltipInfo.vue'
+import FormInput from '../components/FormInput.vue'
+import FormSelect from '../components/FormSelect.vue'
 
-// Router
+const wineStore = useWineStore()
+
 const route = useRoute()
 const router = useRouter()
 const wineId = route.query.id || null
-const isEditMode = ref(false)
+const isEditMode = ref(!!wineId)
 
-// Estado reactivo
+// Estado local para el formulario
 const wine = reactive({
   name: '',
   variety: '',
@@ -191,15 +86,19 @@ const wine = reactive({
   score: '',
 })
 
-// Si hay un ID, traemos el vino de la API
 onMounted(async () => {
-  if (wineId) {
-    isEditMode.value = true
-    try {
-      const response = await api.get(`wines/${wineId}`)
-      Object.assign(wine, response.data)
-    } catch (error) {
-      alert('Error loading wine')
+  if (isEditMode.value) {
+    // Usa el store si ya tiene los datos
+    if (wineStore.selectedWine && wineStore.selectedWine.id === Number(wineId)) {
+      Object.assign(wine, wineStore.selectedWine)
+    } else {
+      try {
+        const response = await api.get(`wines/${wineId}`)
+        Object.assign(wine, response.data)
+        wineStore.setSelectedWine(response.data)
+      } catch (error) {
+        alert('Error loading wine')
+      }
     }
   }
 })
@@ -213,6 +112,7 @@ async function handleSubmit() {
       await api.post('wines', wine)
       alert('Wine created!')
     }
+    wineStore.clearSelectedWine()
     router.push('/wine_list')
   } catch (error) {
     alert('Error saving wine')
