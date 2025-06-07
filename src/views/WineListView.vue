@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen bg-white">
     <!-- Header -->
-   <header class="flex items-center justify-between p-4 border-b">
+    <header class="flex items-center justify-between p-4 border-b">
       <h1 class="text-lg font-semibold">Wines</h1>
       <div class="flex gap-2">
         <button class="px-3 py-2 text-sm bg-blue-500 text-white rounded" @click="createWine()">
@@ -30,25 +30,28 @@
     </header>
 
     <!-- Filtros -->
-    <div class="grid grid-cols-1 gap-4 pt-2 mx-2">
-      <div v-if="showFilters" class="space-y-2 mb-4">
-        <input v-model="searchQuery" type="text" placeholder="Search by name..." class="w-full p-2 border rounded" />
-        <select v-model="selectedScore" class="w-full p-2 border rounded">
-          <option value="">All Scores</option>
-          <option v-for="score in uniqueScores" :key="score" :value="score">{{ score }}</option>
-        </select>
-        <select v-model="selectedVariety" class="w-full p-2 border rounded">
-          <option value="">All Varieties</option>
-          <option v-for="variety in uniqueVarieties" :key="variety" :value="variety">{{ variety }}</option>
-        </select>
-      </div>
+    <div v-if="showFilters" class="grid grid-cols-1 gap-4 pt-2 px-4 mb-4">
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search by name..."
+        class="w-full p-2 border rounded"
+      />
+      <select v-model="selectedScore" class="w-full p-2 border rounded">
+        <option value="">All Scores</option>
+        <option v-for="score in uniqueScores" :key="score" :value="score">{{ score }}</option>
+      </select>
+      <select v-model="selectedVariety" class="w-full p-2 border rounded">
+        <option value="">All Varieties</option>
+        <option v-for="variety in uniqueVarieties" :key="variety" :value="variety">{{ variety }}</option>
+      </select>
     </div>
 
     <!-- Lista de vinos -->
-    <main class="flex-1 overflow-y-auto pb-24">
+    <main class="flex-1 overflow-y-auto pb-24 px-4">
       <div v-if="loading" class="text-center mt-8 text-gray-500">Loading wines...</div>
       <div v-else-if="filteredWines.length === 0" class="text-center mt-8 text-gray-500">No wines found</div>
-      <div class="space-y-3 px-4 py-2">
+      <div class="space-y-3">
         <WineCard
           v-for="wine in filteredWines"
           :key="wine.id"
@@ -96,14 +99,16 @@ const wines = computed(() => wineStore.wines)
 const filteredWines = computed(() => {
   return wines.value.filter(wine => {
     const matchesSearch = wine.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-    const matchesScore = selectedScore.value === '' || wine.score === selectedScore.value
-    const matchesVariety = selectedVariety.value === '' || wine.variety === selectedVariety.value
+    const matchesScore = !selectedScore.value || wine.score === selectedScore.value
+    const matchesVariety = !selectedVariety.value || wine.variety === selectedVariety.value
     return matchesSearch && matchesScore && matchesVariety
   })
 })
 
 const uniqueScores = computed(() => [...new Set(wines.value.map(w => w.score))])
 const uniqueVarieties = computed(() => [...new Set(wines.value.map(w => w.variety))])
+
+const toggleFilters = () => (showFilters.value = !showFilters.value)
 
 function editWine(wine) {
   wineStore.selectWine(wine)
