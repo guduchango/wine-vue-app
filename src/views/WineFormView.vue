@@ -26,11 +26,11 @@
             <FormInput v-model="wine.price" label="Price" type="number" /> 
             <FormSelect v-model="wine.color" label="Color" :options="['translucent', 'medium', 'deep']" />
             <FormSelect v-model="wine.aroma" label="Aroma" :options="['low', 'medium', 'intense']" />
-            <FormSelect v-model="wine.sweetness" label="Sweetness" :options="['dry', 'semi-dry', 'sweet']" tooltip="sweetness" />
-            <FormSelect v-model="wine.acidity" label="Acidity" :options="['low', 'medium', 'high']" tooltip="Acidity is what makes the wine feel fresh, lively, or zesty." />
-            <FormSelect v-model="wine.tannin" label="Tannin" :options="['mild', 'medium', 'antringent']" tooltip="Tannins make the wine feel dry or rough in your mouth." />
-            <FormSelect v-model="wine.body" label="Body" :options="['light', 'medium', 'robust']" tooltip="The body of the wine is how it feels in your mouth." />
-            <FormSelect v-model="wine.persistence" label="Persistence" :options="['short', 'medium', 'long']" tooltip="Persistence is how long the flavor of the wine stays in your mouth after you swallow." />
+            <FormSelect v-model="wine.sweetness" label="Sweetness" :options="['dry', 'semi-dry', 'sweet']" text="sweetness" />
+            <FormSelect v-model="wine.acidity" label="Acidity" :options="['low', 'medium', 'high']" text="acidity" />
+            <FormSelect v-model="wine.tannin" label="Tannin" :options="['mild', 'medium', 'antringent']" text="tannin" />
+            <FormSelect v-model="wine.body" label="Body" :options="['light', 'medium', 'robust']" text="body" />
+            <FormSelect v-model="wine.persistence" label="Persistence" :options="['short', 'medium', 'long']" text="persistence" />
              <FormSelect
               v-model="wine.score"
               label="Score"
