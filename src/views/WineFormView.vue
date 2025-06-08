@@ -106,10 +106,10 @@ onMounted(async () => {
 async function handleSubmit() {
   try {
     if (isEditMode.value) {
-      await api.put(`wines/${wineId}`, wine)
+      await wineStore.updateWine(wine)
       alert('Wine updated!')
     } else {
-      await api.post('wines', wine)
+      await wineStore.addWine(wine)
       alert('Wine created!')
     }
     wineStore.clearSelectedWine()
