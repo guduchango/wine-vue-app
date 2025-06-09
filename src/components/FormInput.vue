@@ -1,7 +1,7 @@
 // components/FormInput.vue
 <template>
   <div class="space-y-2">
-    <label class="block text-sm font-medium">{{ label }}</label>
+    <label class="block text-sm font-medium">{{ $t(label) }}</label>
     <input
       :value="modelValue"
       :type="type"
@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
 const props = defineProps({
   label: String,
   modelValue: [String, Number],

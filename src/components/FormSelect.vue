@@ -2,7 +2,7 @@
 <template>
   <div class="space-y-2">
     <label class="block text-sm font-medium flex items-center gap-2">
-      {{ label }}
+      {{ $t(label) }}
       <TooltipInfo v-if="getInfo" :text="getInfo" />
     </label>
     
@@ -10,7 +10,7 @@
       :value="modelValue"  
       @change="$emit('update:modelValue', $event.target.value)">
       <option value="">{{$t('Select')}}</option>
-      <option v-for="option in options" :key="option" :value="option">{{ option }}</option>
+      <option v-for="option in options" :key="$t(option)" :value="option">{{  $t(option) }}</option>
     </select>
   </div>
 </template>

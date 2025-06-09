@@ -19,28 +19,27 @@
       <div class="p-4 mb-4 rounded">
         <form @submit.prevent="handleSubmit">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FormInput v-model="wine.name" :label="$t('name')" />
-            <FormInput v-model="wine.variety" :label="$t('variety')" />
-            <FormInput v-model="wine.vintage" :label="$t('vintage')" />
-            <FormInput v-model="wine.alcohol" :label="$t('alcohol')" type="number" step="0.1" />
-            <FormInput v-model="wine.price" :label="$t('price')" type="number" /> 
-            <FormSelect v-model="wine.color" :label="$t('color')" :options="[$t('translucent'), $t('medium'), $t('deep')]" />
-            <FormSelect v-model="wine.aroma" :label="$t('aroma')" :options="[$t('low'), $t('medium'), $t('intense')]" />
-            <FormSelect v-model="wine.sweetness" :label="$t('sweetness')" :options="[$t('dry'), $t('semi-dry'), $t('sweet')]" text="sweetness" />
-            <FormSelect v-model="wine.acidity" :label="$t('acidity')" :options="[$t('low'), $t('medium'), $t('high')]" text="acidity" />
-            <FormSelect v-model="wine.tannin" :label="$t('tannin')" :options="[$t('mild'), $t('medium'), $t('antringent')]" text="tannin" />
-            <FormSelect v-model="wine.body" :label="$t('body')" :options="[$t('light'), $t('medium'), $t('robust')]" text="body" />
-            <FormSelect v-model="wine.persistence" :label="$t('persistence')" :options="[$t('short'), $t('medium'), $t('long')]" text="persistence" />
+            <FormInput v-model="wine.name" label="name" />
+            <FormInput v-model="wine.variety" label="variety" />
+            <FormInput v-model="wine.vintage" label="vintage" />
+            <FormInput v-model="wine.alcohol" label="alcohol" type="number" step="0.1" />
+            <FormInput v-model="wine.price" label="price" type="number" /> 
+            <FormSelect v-model="wine.color" label="color" :options="['translucent', 'medium', 'deep']" />
+            <FormSelect v-model="wine.aroma" label="aroma" :options="['low', 'medium', 'intense']" />
+            <FormSelect v-model="wine.sweetness" label="sweetness" :options="['dry', 'semi-dry', 'sweet']" text="sweetness" />
+            <FormSelect v-model="wine.acidity" label="acidity" :options="['low', 'medium', 'high']" text="acidity" />
+            <FormSelect v-model="wine.tannin" label="tannin" :options="['mild', 'medium', 'antringent']" text="tannin" />
+            <FormSelect v-model="wine.body" label="body" :options="['light', 'medium', 'robust']" text="body" />
+            <FormSelect v-model="wine.persistence" label="persistence" :options="['short', 'medium', 'long']" text="persistence" />
              <FormSelect
               v-model="wine.score"
-              :label="$t('score')"
+              label="score"
               :options="[
-                $t('special gathering'),
-                $t('get-together with close friends'),
-                $t('hangout with friends'),
-                $t('its tasty, but expensive'),
-                $t('I wouldnt buy it')
-
+                'special gathering',
+                'get-together with close friends',
+                'hangout with friends',
+                'its tasty, but expensive',
+                'I wouldnt buy it'
                 ]"
               />
           </div>
@@ -100,7 +99,7 @@ onMounted(async () => {
         Object.assign(wine, response.data)
         wineStore.setSelectedWine(response.data)
       } catch (error) {
-        alert($t('Error loading wine'))
+        alert(t('Error loading wine'))
       }
     }
   }

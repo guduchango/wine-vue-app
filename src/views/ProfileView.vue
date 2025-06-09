@@ -19,8 +19,9 @@
       <div class="p-4 mb-4 rounded">
         <form @submit.prevent="handleSubmit">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FormInput v-model="user.name" :label="$t('name')" />
-            <FormSelect v-model="lenguaje" :label="$t('Lenguage')" @click="handleLenguaje" :options="['en', 'es']" />
+            <FormInput v-model="user.name" label="name" />
+            <FormInput v-model="user.email" label="email" />
+            <FormSelect v-model="lenguaje" label="Lenguage" @click="handleLenguaje" :options="['en', 'es']" />
           </div>
           <div class="flex justify-end pt-4">
             <button type="button" @click="handleSubmit" class="px-4 py-2 roundesd bg-blue-600 text-white">{{$t('Save')}}</button>
@@ -34,7 +35,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,watch,onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import FormInput from '../components/FormInput.vue'
@@ -42,19 +43,20 @@ import FormSelect from '../components/FormSelect.vue'
 import Menu from '../components/Menu.vue'
 import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n()
+const { t,locale } = useI18n()
 const router = useRouter()
 const auth = useAuthStore()
 
-// Clonamos los valores del store
 const user = ref(auth.user)
-const lenguaje = ref(auth.lenguaje)
+const lenguaje = ref(auth.getLenguaje() || 'en')
 
 const handleLenguaje = () => {
   if (lenguaje.value === 'en') {
     auth.setLenguaje('en')
+    locale.value = 'en'   
   } else {
     auth.setLenguaje('es')
+    locale.value = 'es'   
   }
 }
 
@@ -62,4 +64,8 @@ function handleSubmit() {
   auth.updateProfile(user.value.name)
   alert(t('Profile saved!'))
 }
+
+onMounted(() => {
+  locale.value = lenguaje.value
+})
 </script>

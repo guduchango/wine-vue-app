@@ -20,6 +20,7 @@ export default {
   light: 'Liviano',
   robust: 'Robusto',
   dry: 'Seco',
+  email: 'Correo electrónico',
   'semi-dry': 'Semi-seco',
   sweet: 'Dulce',
   low: 'Bajo',
@@ -73,10 +74,6 @@ export default {
   'Check your email for a reset link': 'Revisa tu correo electrónico para un enlace de restablecimiento',
   'Profile saved!': 'Perfil guardado!',
   'Loading wine...': 'Cargando vino...',
-
-
-
-
   'Error loading wines from server': 'Error al cargar los vinos del servidor',
   'Are you sure you want to remove this wine?': 'Estás seguro de que quieres eliminar este vino?',
   'Error removing wine: ': 'Error al eliminar el vino: ',
