@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,watch,onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import FormInput from '../components/FormInput.vue'
@@ -42,19 +42,20 @@ import FormSelect from '../components/FormSelect.vue'
 import Menu from '../components/Menu.vue'
 import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n()
+const { t,locale } = useI18n()
 const router = useRouter()
 const auth = useAuthStore()
 
-// Clonamos los valores del store
 const user = ref(auth.user)
-const lenguaje = ref(auth.lenguaje)
+const lenguaje = ref(auth.getLenguaje() || 'en')
 
 const handleLenguaje = () => {
   if (lenguaje.value === 'en') {
     auth.setLenguaje('en')
+    locale.value = 'en'   
   } else {
     auth.setLenguaje('es')
+    locale.value = 'es'   
   }
 }
 
@@ -62,4 +63,8 @@ function handleSubmit() {
   auth.updateProfile(user.value.name)
   alert(t('Profile saved!'))
 }
+
+onMounted(() => {
+  locale.value = lenguaje.value
+})
 </script>
