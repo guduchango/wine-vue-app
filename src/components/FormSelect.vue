@@ -9,7 +9,7 @@
     <select  class="w-full p-2 border rounded" 
       :value="modelValue"  
       @change="$emit('update:modelValue', $event.target.value)">
-      <option value="">Select</option>
+      <option value="">{{$t('Select')}}</option>
       <option v-for="option in options" :key="option" :value="option">{{ option }}</option>
     </select>
   </div>

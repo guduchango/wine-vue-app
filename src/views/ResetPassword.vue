@@ -1,26 +1,26 @@
 <template>
     <div class="min-h-screen flex items-center justify-center bg-gray-100">
       <div class="w-full max-w-md bg-white p-8 rounded shadow">
-        <h1 class="text-2xl font-bold mb-6 text-center">Reset Password</h1>
+        <h1 class="text-2xl font-bold mb-6 text-center">{{$t('Reset Password')}}</h1>
   
         <form @submit.prevent="handleSubmit" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium mb-1">Email</label>
+            <label class="block text-sm font-medium mb-1"> {{ $t('Email') }} </label>
             <input v-model="form.email" type="email" required class="w-full p-2 border rounded" />
           </div>
   
           <div>
-            <label class="block text-sm font-medium mb-1">New Password</label>
+            <label class="block text-sm font-medium mb-1">{{$t('New Password')}}</label>
             <input v-model="form.password" type="password" required class="w-full p-2 border rounded" />
           </div>
   
           <div>
-            <label class="block text-sm font-medium mb-1">Confirm Password</label>
+            <label class="block text-sm font-medium mb-1">{{$t('Confirm Password')}}</label>
             <input v-model="form.confirmPassword" type="password" required class="w-full p-2 border rounded" />
           </div>
   
           <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            Reset Password
+            {{$t('Reset Password')}}
           </button>
         </form>
       </div>
@@ -31,15 +31,14 @@
   import { reactive } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { useAuthStore } from '../stores/auth.js'
-  
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
   const router = useRouter()
   const route = useRoute()
   const auth = useAuthStore()
   
-  const token = route.query.token || route.params.token // soporte para ambas formas
-
-  console.log('Token:', token) // Verifica que el token se esté recibiendo correctamente
-  
+  const token = route.query.token || route.params.token
   const form = reactive({
     email: '',
     password: '',
@@ -48,7 +47,7 @@
   
   async function handleSubmit() {
     if (form.password !== form.confirmPassword) {
-      alert("Passwords do not match")
+      alert(t('Passwords do not match'))
       return
     }
 

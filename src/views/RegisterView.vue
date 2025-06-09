@@ -5,7 +5,7 @@
 
       <form @submit.prevent="handleRegister" class="space-y-4">
         <div>
-          <label class="block text-sm text-gray-700">Name</label>
+          <label class="block text-sm text-gray-700">{{$t('Name')}}</label>
           <input
             v-model="name"
             type="text"
@@ -16,7 +16,7 @@
         </div>
 
         <div>
-          <label class="block text-sm text-gray-700">Email</label>
+          <label class="block text-sm text-gray-700">{{$t('Email')}}</label>
           <input
             v-model="email"
             type="email"
@@ -27,7 +27,7 @@
         </div>
 
         <div>
-          <label class="block text-sm text-gray-700">Password</label>
+          <label class="block text-sm text-gray-700">{{$t('Password')}}</label>
           <input
             v-model="password"
             type="password"
@@ -38,7 +38,7 @@
         </div>
 
         <div>
-          <label class="block text-sm text-gray-700">Confirm Password</label>
+          <label class="block text-sm text-gray-700">{{$t('Confirm Password')}}</label>
           <input
             v-model="password_confirmation"
             type="password"
@@ -56,16 +56,16 @@
           type="submit"
           class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-300"
         >
-          Register
+          {{$t('Register')}}
         </button>
       </form>
 
       <div class="flex justify-between text-sm text-gray-600 pt-2">
         <RouterLink to="/login" class="text-blue-600 hover:underline">
-          Already have an account?
+          {{$t('Already have an account?')}}
         </RouterLink>
         <RouterLink to="/forgot-password" class="text-blue-600 hover:underline">
-          Forgot password?
+          {{$t('Forgot password?')}}
         </RouterLink>
       </div>
     </div>
@@ -76,6 +76,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const name = ref('')
 const email = ref('')
@@ -98,7 +101,7 @@ const handleRegister = async () => {
     router.push('/wine_list')
   } catch (err) {
     console.error(err)
-    error.value = 'Registration failed. Please check your input.'
+    error.value = t('Registration failed. Please check your input.')
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div class="flex flex-col min-h-screen bg-white">
     <!-- Header -->
     <header class="flex items-center justify-between p-4 border-b">
-      <h1 class="text-lg font-semibold">{{ isEditMode ? 'Edit' : 'Create' }}</h1>
+      <h1 class="text-lg font-semibold">{{ isEditMode ? $t('Edit') : $t('Create') }}</h1>
       <div class="flex gap-2">
         <RouterLink to="/wine_list">
           <button class="w-12 p-2 rounded bg-blue-500 text-white">
@@ -19,32 +19,33 @@
       <div class="p-4 mb-4 rounded">
         <form @submit.prevent="handleSubmit">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FormInput v-model="wine.name" label="Name" />
-            <FormInput v-model="wine.variety" label="Variety" />
-            <FormInput v-model="wine.vintage" label="Vintage" type="number" />
-            <FormInput v-model="wine.alcohol" label="Alcohol" type="number" step="0.1" />
-            <FormInput v-model="wine.price" label="Price" type="number" /> 
-            <FormSelect v-model="wine.color" label="Color" :options="['translucent', 'medium', 'deep']" />
-            <FormSelect v-model="wine.aroma" label="Aroma" :options="['low', 'medium', 'intense']" />
-            <FormSelect v-model="wine.sweetness" label="Sweetness" :options="['dry', 'semi-dry', 'sweet']" text="sweetness" />
-            <FormSelect v-model="wine.acidity" label="Acidity" :options="['low', 'medium', 'high']" text="acidity" />
-            <FormSelect v-model="wine.tannin" label="Tannin" :options="['mild', 'medium', 'antringent']" text="tannin" />
-            <FormSelect v-model="wine.body" label="Body" :options="['light', 'medium', 'robust']" text="body" />
-            <FormSelect v-model="wine.persistence" label="Persistence" :options="['short', 'medium', 'long']" text="persistence" />
+            <FormInput v-model="wine.name" :label="$t('name')" />
+            <FormInput v-model="wine.variety" :label="$t('variety')" />
+            <FormInput v-model="wine.vintage" :label="$t('vintage')" />
+            <FormInput v-model="wine.alcohol" :label="$t('alcohol')" type="number" step="0.1" />
+            <FormInput v-model="wine.price" :label="$t('price')" type="number" /> 
+            <FormSelect v-model="wine.color" :label="$t('color')" :options="[$t('translucent'), $t('medium'), $t('deep')]" />
+            <FormSelect v-model="wine.aroma" :label="$t('aroma')" :options="[$t('low'), $t('medium'), $t('intense')]" />
+            <FormSelect v-model="wine.sweetness" :label="$t('sweetness')" :options="[$t('dry'), $t('semi-dry'), $t('sweet')]" text="sweetness" />
+            <FormSelect v-model="wine.acidity" :label="$t('acidity')" :options="[$t('low'), $t('medium'), $t('high')]" text="acidity" />
+            <FormSelect v-model="wine.tannin" :label="$t('tannin')" :options="[$t('mild'), $t('medium'), $t('antringent')]" text="tannin" />
+            <FormSelect v-model="wine.body" :label="$t('body')" :options="[$t('light'), $t('medium'), $t('robust')]" text="body" />
+            <FormSelect v-model="wine.persistence" :label="$t('persistence')" :options="[$t('short'), $t('medium'), $t('long')]" text="persistence" />
              <FormSelect
               v-model="wine.score"
-              label="Score"
+              :label="$t('score')"
               :options="[
-                'special gathering',
-                'get-together with close friends',
-                'hangout with friends',
-                'its tasty, but expensive',
-                'I wouldnt buy it'
+                $t('special gathering'),
+                $t('get-together with close friends'),
+                $t('hangout with friends'),
+                $t('its tasty, but expensive'),
+                $t('I wouldnt buy it')
+
                 ]"
               />
           </div>
           <div class="flex justify-end pt-4">
-            <button type="submit" class="px-4 py-2 roundesd bg-blue-600 text-white">Save</button>
+            <button type="submit" class="px-4 py-2 roundesd bg-blue-600 text-white">{{$t('Save')}}</button>
           </div>
         </form>
       </div>
@@ -61,7 +62,9 @@ import Menu from '../components/Menu.vue'
 import api from '../services/api'
 import FormInput from '../components/FormInput.vue'
 import FormSelect from '../components/FormSelect.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const wineStore = useWineStore()
 
 const route = useRoute()
@@ -97,7 +100,7 @@ onMounted(async () => {
         Object.assign(wine, response.data)
         wineStore.setSelectedWine(response.data)
       } catch (error) {
-        alert('Error loading wine')
+        alert($t('Error loading wine'))
       }
     }
   }
@@ -107,15 +110,15 @@ async function handleSubmit() {
   try {
     if (isEditMode.value) {
       await wineStore.updateWine(wine)
-      alert('Wine updated!')
+      alert(t('Wine updated!'))
     } else {
       await wineStore.addWine(wine)
-      alert('Wine created!')
+      alert(t('Wine created!'))
     }
     wineStore.clearSelectedWine()
     router.push('/wine_list')
   } catch (error) {
-    alert('Error saving wine')
+    alert(t('Error saving wine'))  
   }
 }
 </script>
