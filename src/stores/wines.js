@@ -22,6 +22,7 @@ export const useWineStore = defineStore('wines', {
 
       try {
         const response = await api.get('/wines')
+        console.log('Fetched wines:', response.data)
         this.wines = response.data
       } catch (error) {
         console.error('Failed to fetch wines:', error)
