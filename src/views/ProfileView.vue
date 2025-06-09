@@ -19,8 +19,9 @@
       <div class="p-4 mb-4 rounded">
         <form @submit.prevent="handleSubmit">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FormInput v-model="user.name" :label="$t('name')" />
-            <FormSelect v-model="lenguaje" :label="$t('Lenguage')" @click="handleLenguaje" :options="['en', 'es']" />
+            <FormInput v-model="user.name" label="name" />
+            <FormInput v-model="user.email" label="email" />
+            <FormSelect v-model="lenguaje" label="Lenguage" @click="handleLenguaje" :options="['en', 'es']" />
           </div>
           <div class="flex justify-end pt-4">
             <button type="button" @click="handleSubmit" class="px-4 py-2 roundesd bg-blue-600 text-white">{{$t('Save')}}</button>

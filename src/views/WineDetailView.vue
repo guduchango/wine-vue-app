@@ -40,16 +40,16 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4 text-gray-700">
-          <Info :label="$t('vintage')" :value="wine.vintage" />
-          <Info :label="$t('alcohol')" :value="wine.alcohol + '%'" />
-          <Info :label="$t('price')" :value="'$' + wine.price" />
-          <Info :label="$t('color')" :value="wine.color" />
-          <Info :label="$t('aroma')" :value="wine.aroma" />
-          <Info :label="$t('sweetness')" :value="wine.sweetness" />
-          <Info :label="$t('acidity')" :value="wine.acidity" />
-          <Info :label="$t('tannin')" :value="wine.tannin" />
-          <Info :label="$t('body')" :value="wine.body" />
-          <Info :label="$t('persistence')" :value="wine.persistence" /> 
+          <Info label="vintage" :value="wine.vintage" />
+          <Info label="alcohol" :value="wine.alcohol + '%'" />
+          <Info label="price" :value="'$' + wine.price" />
+          <Info label="color" :value="wine.color" />
+          <Info label="aroma" :value="wine.aroma" />
+          <Info label="sweetness" :value="wine.sweetness" />
+          <Info label="acidity" :value="wine.acidity" />
+          <Info label="tannin" :value="wine.tannin" />
+          <Info label="body" :value="wine.body" />
+          <Info label="persistence" :value="wine.persistence" /> 
         </div>
 
         <div class="mt-6">

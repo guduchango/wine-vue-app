@@ -19,6 +19,7 @@ export default {
   light: 'Light',
   robust: 'Robust',
   dry: 'Dry',
+  email: 'Email',
   'semi-dry': 'Semi-dry',
   sweet: 'Sweet',
   low: 'Low',

@@ -20,6 +20,7 @@ export default {
   light: 'Liviano',
   robust: 'Robusto',
   dry: 'Seco',
+  email: 'Correo electrónico',
   'semi-dry': 'Semi-seco',
   sweet: 'Dulce',
   low: 'Bajo',
