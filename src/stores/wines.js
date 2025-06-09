@@ -9,8 +9,7 @@ export const useWineStore = defineStore('wines', {
   }),
 
   persist: {
-    paths: ['wines', 'selectedWine'], // guarda sólo estos
-    storage: localStorage, // explícito por claridad
+    paths: ['wines', 'selectedWine'],
   },
 
   actions: {

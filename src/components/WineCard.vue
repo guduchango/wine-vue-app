@@ -6,7 +6,7 @@
         {{ wine.name }} | {{ wine.variety }} <span class="text-gray-500 font-normal">({{ wine.vintage }})</span>
       </div>
       <div class="text-sm text-gray-500 mt-1">
-        <span class="font-semibold text-gray-700">Score:</span> {{ wine.score }}
+        <span class="font-semibold text-gray-700">{{$t('Score')}}:</span> {{wine.score}}
       </div>
     </div>
     <div class="flex gap-2">

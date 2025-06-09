@@ -17,7 +17,7 @@
 
     <!-- Detalle -->
     <main class="flex-1 overflow-y-auto p-4 pb-24">
-      <div v-if="!wine" class="text-gray-500">Loading wine...</div>
+      <div v-if="!wine" class="text-gray-500">{{$t('Loading wine...')}}</div>
       <div v-else>
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-2xl font-bold text-gray-800">
@@ -40,21 +40,21 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4 text-gray-700">
-          <Info label="Vintage" :value="wine.vintage" />
-          <Info label="Alcohol" :value="wine.alcohol + '%'" />
-          <Info label="Price" :value="'$' + wine.price" />
-          <Info label="Color" :value="wine.color" />
-          <Info label="Aroma" :value="wine.aroma" />
-          <Info label="Sweetness" :value="wine.sweetness" />
-          <Info label="Acidity" :value="wine.acidity" />
-          <Info label="Tannin" :value="wine.tannin" />
-          <Info label="Body" :value="wine.body" />
-          <Info label="Persistence" :value="wine.persistence" />
+          <Info :label="$t('vintage')" :value="wine.vintage" />
+          <Info :label="$t('alcohol')" :value="wine.alcohol + '%'" />
+          <Info :label="$t('price')" :value="'$' + wine.price" />
+          <Info :label="$t('color')" :value="wine.color" />
+          <Info :label="$t('aroma')" :value="wine.aroma" />
+          <Info :label="$t('sweetness')" :value="wine.sweetness" />
+          <Info :label="$t('acidity')" :value="wine.acidity" />
+          <Info :label="$t('tannin')" :value="wine.tannin" />
+          <Info :label="$t('body')" :value="wine.body" />
+          <Info :label="$t('persistence')" :value="wine.persistence" /> 
         </div>
 
         <div class="mt-6">
-          <span class="text-sm font-semibold text-gray-600">Score:</span>
-          <span class="ml-2 text-gray-800">{{ wine.score }}</span>
+          <span class="text-sm font-semibold text-gray-600">{{$t('Score')}}</span>
+          <span class="ml-2 text-gray-800">{{ $t(wine.score) }}</span>
         </div>
       </div>
     </main>
@@ -69,8 +69,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { useWineStore } from '../stores/wines'
 import Menu from '../components/Menu.vue'
 import Info from '../components/Info.vue'
-import api from '../services/api'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const wineStore = useWineStore()
 const route = useRoute()
 const router = useRouter()
@@ -85,7 +86,7 @@ onMounted(() => {
     if (localWine) {
       wineStore.selectWine(localWine)
     } else {
-      alert('Wine not found in store')
+      alert(t('Wine not found in store'))
       router.push('/wine_list')
     }
   }
@@ -96,14 +97,13 @@ const goToEdit = () => {
 }
 
 async function goToRemove() {
-  if (confirm('Are you sure you want to remove this wine?')) {
+  if (confirm(t('Are you sure you want to remove this wine?'))) {
     try {
       wineStore.deleteWine(wine.value.id)
-      alert('Wine removed!')
+      alert(t('Wine removed!'))
       router.push('/wine_list')
     } catch (error) {
-      console.error('Error removing wine:', error)
-      alert('Error removing wine')
+      alert(t('Error removing wine:') + error)
     }
   }
 }

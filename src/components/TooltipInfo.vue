@@ -16,7 +16,7 @@
       <!-- Modal -->
       <div class="relative z-60 max-w-xs w-full bg-white rounded-xl p-4 shadow-lg border">
         <div class="text-sm text-gray-800 whitespace-pre-line">
-          {{ text }}
+          {{ $t(text) }}
         </div>
         <div class="text-right mt-4">
           <button

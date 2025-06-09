@@ -18,7 +18,12 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
     token: localStorage.getItem('token') || null,
+    lenguaje: 'en'
   }),
+
+  persist: {
+    lenguaje: 'en'
+  },
 
   actions: {
     async login(credentials) {
@@ -47,22 +52,35 @@ export const useAuthStore = defineStore('auth', {
 
     async reset(token, form) {
 
-      console.log('form', form)
-
       const info = {
         token: token,
         password: form.password,
         password_confirmation: form.confirmPassword,
         email: form.email
       }
-
-      console.log('info', info)
-
-
       try {
         const {
           data
         } = await public_api.post('/reset-password', info)
+        console.log('Success:', data)
+        return data
+      } catch (error) {
+        throw error
+      }
+    },
+
+
+    async updateProfile(name) {
+
+      const info = {
+        token: this.token,
+        name: name,
+      }
+
+      try {
+        const {
+          data
+        } = await api.post('/update-profile', info)
         console.log('Success:', data)
         return data
       } catch (error) {
@@ -85,6 +103,15 @@ export const useAuthStore = defineStore('auth', {
       this.token = null
       localStorage.removeItem('token')
       router.push('/login')
-    }
+    },
+
+    setLenguaje(lenguaje) {
+      this.lenguaje = lenguaje
+    },
+
+    getLenguaje() {
+      return this.lenguaje
+    },
+
   }
 })

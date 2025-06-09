@@ -2,7 +2,7 @@
   <div class="flex flex-col min-h-screen bg-white">
     <!-- Header -->
     <header class="flex items-center justify-between p-4 border-b">
-      <h1 class="text-lg font-semibold">Wines</h1>
+      <h1 class="text-lg font-semibold">{{$t('Wines')}}</h1>
       <div class="flex gap-2">
         <button class="px-3 py-2 text-sm bg-blue-500 text-white rounded" @click="refreshWines()">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -41,19 +41,19 @@
     <div v-if="showFilters" class="grid grid-cols-1 gap-4 pt-2 px-4 mb-4">
       <input v-model="searchQuery" type="text" placeholder="Search by name..." class="w-full p-2 border rounded" />
       <select v-model="selectedScore" class="w-full p-2 border rounded">
-        <option value="">All Scores</option>
+        <option value="">{{$t('All Scores')}}</option>
         <option v-for="score in uniqueScores" :key="score" :value="score">{{ score }}</option>
       </select>
       <select v-model="selectedVariety" class="w-full p-2 border rounded">
-        <option value="">All Varieties</option>
+        <option value="">{{$t('All Varieties')}}</option>
         <option v-for="variety in uniqueVarieties" :key="variety" :value="variety">{{ variety }}</option>
       </select>
     </div>
 
     <!-- Lista de vinos -->
     <main class="flex-1 overflow-y-auto pb-24 px-4">
-      <div v-if="loading" class="text-center mt-8 text-gray-500">Loading wines...</div>
-      <div v-else-if="filteredWines.length === 0" class="text-center mt-8 text-gray-500">No wines found</div>
+      <div v-if="loading" class="text-center mt-8 text-gray-500">{{$t('Loading wines...')}}</div>
+      <div v-else-if="filteredWines.length === 0" class="text-center mt-8 text-gray-500">{{$t('No wines found')}}</div>
       <div class="space-y-3">
         <WineCard v-for="wine in filteredWines" :key="wine.id" :wine="wine" @click="editWine(wine)" @edit="editWine" />
       </div>
@@ -70,7 +70,9 @@ import { useWineStore } from '../stores/wines'
 import { useRouter } from 'vue-router'
 import Menu from '../components/Menu.vue'
 import WineCard from '../components/WineCard.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const searchQuery = ref('')
 const selectedScore = ref('')
 const selectedVariety = ref('')
@@ -84,8 +86,7 @@ onMounted(async () => {
   try {
     await wineStore.fetchWines()
   } catch (e) {
-    console.error('Failed to fetch wines:', e)
-    alert('Error loading wines from server')
+    alert(t('Error loading wines from server'))  
   } finally {
     loading.value = false
   }

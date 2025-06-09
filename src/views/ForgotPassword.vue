@@ -1,11 +1,11 @@
 <template>
     <div class="min-h-screen flex items-center justify-center bg-gray-100">
       <div class="w-full max-w-md bg-white p-8 rounded shadow">
-        <h1 class="text-2xl font-bold mb-6 text-center">Forgot Password</h1>
+        <h1 class="text-2xl font-bold mb-6 text-center">{{$t('Forgot Password')}}</h1>
   
         <form @submit.prevent="handleSubmit" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium mb-1">Email</label>
+            <label class="block text-sm font-medium mb-1">{{$t('Email')}}</label>
             <input
               v-model="email"
               type="email"
@@ -19,7 +19,7 @@
             type="submit"
             class="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
-            Send Reset Link
+            {{$t('Send Reset Link')}}
           </button>
         </form>
   
@@ -31,7 +31,10 @@
   
   <script setup>
   import { ref } from 'vue'
-  
+  import { useI18n } from 'vue-i18n'
+
+
+  const { t } = useI18n()  
   const email = ref('')
   const message = ref('')
   const error = ref('')
@@ -57,7 +60,7 @@
         throw new Error(data.message || data.errors?.email?.[0] || 'Something went wrong')
       }
   
-      message.value = 'A reset link has been sent to your email.'
+      message.value = t('Check your email for a reset link')
       email.value = ''
     } catch (err) {
       error.value = err.message
