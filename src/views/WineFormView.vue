@@ -44,7 +44,7 @@
               />
           </div>
           <div class="flex justify-end pt-4">
-            <button type="submit" class="px-4 py-2 roundesd bg-blue-600 text-white">{{$t('Save')}}</button>
+            <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white">{{$t('Save')}}</button>
           </div>
         </form>
       </div>

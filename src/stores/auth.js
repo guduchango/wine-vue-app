@@ -81,7 +81,8 @@ export const useAuthStore = defineStore('auth', {
         const {
           data
         } = await api.post('/update-profile', info)
-        console.log('Success:', data)
+        
+        this.user = data
         return data
       } catch (error) {
         throw error
