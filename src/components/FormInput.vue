@@ -5,7 +5,6 @@
     <input
       :value="modelValue"
       :type="type"
-      :readonly="readonly"
       @input="$emit('update:modelValue', $event.target.value)"
       class="w-full p-2 border rounded"
     />

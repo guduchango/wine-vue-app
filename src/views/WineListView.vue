@@ -39,10 +39,10 @@
 
     <!-- Filtros -->
     <div v-if="showFilters" class="grid grid-cols-1 gap-4 pt-2 px-4 mb-4">
-      <input v-model="searchQuery" type="text" placeholder="Search by name..." class="w-full p-2 border rounded" />
+      <input v-model="searchQuery" type="text" :placeholder="$t('Search by name...')" class="w-full p-2 border rounded" />
       <select v-model="selectedScore" class="w-full p-2 border rounded">
         <option value="">{{$t('All Scores')}}</option>
-        <option v-for="score in uniqueScores" :key="score" :value="score">{{ score }}</option>
+        <option v-for="score in uniqueScores" :key="$t(score)" :value="score">{{ $t(score) }}</option>
       </select>
       <select v-model="selectedVariety" class="w-full p-2 border rounded">
         <option value="">{{$t('All Varieties')}}</option>
