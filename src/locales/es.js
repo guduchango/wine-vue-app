@@ -32,6 +32,7 @@ export default {
   'hangout with friends': 'Reunion con amigos',
   'its tasty, but expensive': 'Es rico, pero caro',
   'I wouldnt buy it': 'No lo compraría',
+  'Search by name...': 'Buscar por nombre...',
   high: 'Alto',
   short: 'Corto',
   long: 'Largo',
