@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
     <div class="max-w-md w-full bg-white shadow-md rounded-xl p-8 space-y-6">
-      <h2 class="text-2xl font-semibold text-center text-gray-800">Create an account</h2>
+      <h2 class="text-2xl font-semibold text-center text-gray-800">{{$t('Create an account')}}</h2>
 
       <form @submit.prevent="handleRegister" class="space-y-4">
         <div>
@@ -9,7 +9,7 @@
           <input
             v-model="name"
             type="text"
-            placeholder="Your name"
+            :placeholder="$t('Your name')"
             class="mt-1 w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
@@ -20,7 +20,7 @@
           <input
             v-model="email"
             type="email"
-            placeholder="Your email"
+            :placeholder="$t('Your email')"
             class="mt-1 w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
@@ -31,7 +31,7 @@
           <input
             v-model="password"
             type="password"
-            placeholder="Create a password"
+            :placeholder="$t('Create a password')"
             class="mt-1 w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
@@ -42,7 +42,7 @@
           <input
             v-model="password_confirmation"
             type="password"
-            placeholder="Confirm your password"
+            :placeholder="$t('Confirm your password')"
             class="mt-1 w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />

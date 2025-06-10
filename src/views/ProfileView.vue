@@ -20,11 +20,21 @@
         <form @submit.prevent="handleSubmit">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FormInput v-model="user.name" label="name" />
-            <FormInput v-model="user.email" label="email" />
+            <div class="space-y-2">
+              <label class="block text-sm font-medium">{{$t('Email')}}</label>
+              <input
+                color="gray"
+                :value="user.email"
+                type="email"
+                class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-gray-500 cursor-not-allowed"
+                readonly
+                disabled
+              />
+            </div>
             <FormSelect v-model="lenguaje" label="Lenguage" @click="handleLenguaje" :options="['en', 'es']" />
           </div>
           <div class="flex justify-end pt-4">
-            <button type="button" @click="handleSubmit" class="px-4 py-2 roundesd bg-blue-600 text-white">{{$t('Save')}}</button>
+            <button type="button" @click="handleSubmit" class="px-4 py-2 rounded bg-blue-600 text-white">{{$t('Save')}}</button>
           </div>
         </form>
       </div>
@@ -35,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref,watch,onMounted } from 'vue'
+import { ref,watch,onMounted, readonly } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import FormInput from '../components/FormInput.vue'
@@ -48,6 +58,7 @@ const router = useRouter()
 const auth = useAuthStore()
 
 const user = ref(auth.user)
+console.log('user', user.value)
 const lenguaje = ref(auth.getLenguaje() || 'en')
 
 const handleLenguaje = () => {
