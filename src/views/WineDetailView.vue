@@ -40,6 +40,7 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4 text-gray-700">
+          <Info label="tasted day" :value="wine.tasted_day" />
           <Info label="vintage" :value="wine.vintage" />
           <Info label="alcohol" :value="wine.alcohol + '%'" />
           <Info label="price" :value="'$' + wine.price" />

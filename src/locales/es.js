@@ -2,6 +2,7 @@ import en from "./en";
 
 export default {
   name: 'Nombre',
+  'tasted day': 'Fecha de cata',
   variety: 'Variedad',
   vintage: 'Añada',
   alcohol: 'Alcohol',
