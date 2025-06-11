@@ -19,6 +19,7 @@
       <div class="p-4 mb-4 rounded">
         <form @submit.prevent="handleSubmit">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <FormDate v-model="wine.tasted_day" label="tasted day" />
             <FormInput v-model="wine.name" label="name" />
             <FormInput v-model="wine.variety" label="variety" />
             <FormInput v-model="wine.vintage" label="vintage" />
@@ -61,6 +62,7 @@ import Menu from '../components/Menu.vue'
 import api from '../services/api'
 import FormInput from '../components/FormInput.vue'
 import FormSelect from '../components/FormSelect.vue'
+import FormDate from '../components/FormDate.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -86,6 +88,7 @@ const wine = reactive({
   body: '',
   persistence: '',
   score: '',
+  tasted_day: '',
 })
 
 onMounted(async () => {
@@ -106,6 +109,7 @@ onMounted(async () => {
 })
 
 async function handleSubmit() {
+  console.log('Submitting wine:', wine)
   try {
     if (isEditMode.value) {
       await wineStore.updateWine(wine)

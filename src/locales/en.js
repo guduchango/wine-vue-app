@@ -1,6 +1,7 @@
 // en.js
 export default {
   name: 'Name',
+  'tasted day': 'Tasted day',
   variety: 'Variety',
   vintage: 'Vintage',
   alcohol: 'Alcohol',
