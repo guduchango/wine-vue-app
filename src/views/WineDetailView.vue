@@ -71,11 +71,13 @@ import { useWineStore } from '../stores/wines'
 import Menu from '../components/Menu.vue'
 import Info from '../components/Info.vue'
 import { useI18n } from 'vue-i18n'
+import { useToast } from "vue-toastification";
 
 const { t } = useI18n()
 const wineStore = useWineStore()
 const route = useRoute()
 const router = useRouter()
+const toast = useToast();
 
 const wineId = route.query.id
 const wine = computed(() => wineStore.selectedWine)
@@ -87,7 +89,7 @@ onMounted(() => {
     if (localWine) {
       wineStore.selectWine(localWine)
     } else {
-      alert(t('Wine not found in store'))
+      toast.error(t('Wine not found in store'))
       router.push('/wine_list')
     }
   }
@@ -98,13 +100,13 @@ const goToEdit = () => {
 }
 
 async function goToRemove() {
-  if (confirm(t('Are you sure you want to remove this wine?'))) {
+  if (toast('Are you sure you want to remove this wine?')) {
     try {
       wineStore.deleteWine(wine.value.id)
-      alert(t('Wine removed!'))
+      toast.success(t('Wine removed!'))
       router.push('/wine_list')
     } catch (error) {
-      alert(t('Error removing wine:') + error)
+      toast.error(t('Error removing wine:') + error)
     }
   }
 }

@@ -16,7 +16,8 @@ const routes = [
   { path: '/wine_list', name: 'WineList', component: WineListView },
   { path: '/wine_form', name: 'WineForm', component: WineFormView },
   { path: '/profile', name: 'ProfileView', component: ProfileView },
-
+  { path: '/dashboard', name: 'Dashboard', component: () => import('../views/WineDashboard.vue') },
+  { path: '/test', name: 'TestView', component: () => import('../views/TestView.vue') },
   { path: '/wine_detail', name: 'WineDetail', component: WineDetailView },
   { path: '/forgot-password', name: 'ForgotPassword', component: ForgotPassword },
   { path: '/reset-password/:token', name: 'ResetPassword', component: ResetPassword },

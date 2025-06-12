@@ -2,12 +2,24 @@
   <nav class="fixed bottom-0 left-0 right-0 bg-white border-t shadow z-10">
     <div class="flex justify-around p-2 text-xs relative">
       <!-- Home -->
-      <RouterLink to="/wine_list">
+      <RouterLink to="/dashboard">
         <button class="flex flex-col items-center text-gray-600 hover:text-blue-500">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7m-9 2v8m-4 0h8" />
           </svg>
           {{$t('Home')}}
+        </button>
+      </RouterLink>
+
+      <!-- Wines -->
+      <RouterLink to="/wine_list">
+        <button class="flex flex-col items-center text-gray-600 hover:text-blue-500">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+        d="M8.25 3h7.5m0 0c.28 2.5-.51 4.75-2.25 6.25a4.5 4.5 0 0 1-3 1c-1.28 0-2.5-.5-3.25-1.25C7.01 7.75 7 5.5 8.25 3zm0 0v0M12 10v7m-3 4h6" />
+            </svg>
+          {{$t('Wines')}}
         </button>
       </RouterLink>
 

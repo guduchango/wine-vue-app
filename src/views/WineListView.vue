@@ -71,6 +71,7 @@ import { useRouter } from 'vue-router'
 import Menu from '../components/Menu.vue'
 import WineCard from '../components/WineCard.vue'
 import { useI18n } from 'vue-i18n'
+import { useToast } from "vue-toastification";
 
 const { t } = useI18n()
 const searchQuery = ref('')
@@ -78,6 +79,7 @@ const selectedScore = ref('')
 const selectedVariety = ref('')
 const showFilters = ref(false)
 const loading = ref(true)
+const toast = useToast();
 
 const wineStore = useWineStore()
 const router = useRouter()
@@ -123,6 +125,7 @@ async function refreshWines() {
   loading.value = true
   wineStore.fetchWines().finally(() => {
     loading.value = false
+    toast.success(t('Wines refreshed!'))
   })
 }
 </script>
