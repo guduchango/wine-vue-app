@@ -64,9 +64,11 @@ import FormInput from '../components/FormInput.vue'
 import FormSelect from '../components/FormSelect.vue'
 import FormDate from '../components/FormDate.vue'
 import { useI18n } from 'vue-i18n'
+import { useToast } from "vue-toastification";
 
 const { t } = useI18n()
 const wineStore = useWineStore()
+const toast = useToast();
 
 const route = useRoute()
 const router = useRouter()
@@ -102,7 +104,7 @@ onMounted(async () => {
         Object.assign(wine, response.data)
         wineStore.setSelectedWine(response.data)
       } catch (error) {
-        alert(t('Error loading wine'))
+        toast.error(t('Error loading wine'))
       }
     }
   }
@@ -113,15 +115,15 @@ async function handleSubmit() {
   try {
     if (isEditMode.value) {
       await wineStore.updateWine(wine)
-      alert(t('Wine updated!'))
+    toast.success(t('Wine updated!'))
     } else {
       await wineStore.addWine(wine)
-      alert(t('Wine created!'))
+      toast.success(t('Wine created!'))
     }
     wineStore.clearSelectedWine()
     router.push('/wine_list')
   } catch (error) {
-    alert(t('Error saving wine'))  
+    toast.error(t('Error saving wine'))
   }
 }
 </script>

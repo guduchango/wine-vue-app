@@ -52,10 +52,12 @@ import FormInput from '../components/FormInput.vue'
 import FormSelect from '../components/FormSelect.vue'
 import Menu from '../components/Menu.vue'
 import { useI18n } from 'vue-i18n'
+import { useToast } from "vue-toastification";
 
 const { t,locale } = useI18n()
 const router = useRouter()
 const auth = useAuthStore()
+const toast = useToast();
 
 const user = ref(auth.user)
 console.log('user', user.value)
@@ -72,8 +74,13 @@ const handleLenguaje = () => {
 }
 
 function handleSubmit() {
-  auth.updateProfile(user.value.name)
-  alert(t('Profile saved!'))
+  try {
+    auth.updateProfile(user.value.name)
+    toast.success(t('Profile saved!'))
+  } catch (error) {
+    console.error('Error updating profile:', error)
+    toast.error(t('Failed to save profile. Please try again.'))
+  }
 }
 
 onMounted(() => {
