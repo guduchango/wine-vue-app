@@ -77,11 +77,11 @@ Add your screenshots inside a `/docs/` folder in the repo and reference them lik
 </p>
 
 <p align="center">
-  <img src="docs/forgot_pass.png" alt="forgot pass" width="200"/>
+  <img src="docs/auth_forgot_pass.png" alt="forgot pass" width="200"/>
 </p>
 
 <p align="center">
-  <img src="docs/register.png" alt="register" width="200"/>
+  <img src="docs/auth_register.png" alt="register" width="200"/>
 </p>
 
 ---
@@ -101,9 +101,8 @@ Add your screenshots inside a `/docs/` folder in the repo and reference them lik
 </p>
 
 <p align="center">
-  <img src="docs/wine_help.png" alt="wine form help" width="200"/>
+  <img src="docs/wine_form_help.png" alt="wine form help" width="200"/>
 </p>
-
 
 
 ---
